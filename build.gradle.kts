@@ -1,3 +1,6 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+
 plugins {
     id("java")
     id("io.qameta.allure") version "3.0.0" // allure-framework/allure-gradle
@@ -45,8 +48,24 @@ tasks.test {
     environment("SE_AVOID_STATS", "true")
 }
 
-tasks.register<Test>("practiceFormTest") { // Experimenting with running Tags
-    useJUnitPlatform {
-        includeTags("practice_form_test")
+tasks.register<Test>("practiceFormTest") {
+    testClassesDirs = sourceSets.test.get().output.classesDirs
+    classpath = sourceSets.test.get().runtimeClasspath
+
+    useJUnitPlatform { includeTags("practice_form_test") }
+
+    testLogging {
+        events = setOf(
+            TestLogEvent.STARTED,
+            TestLogEvent.PASSED,
+            TestLogEvent.SKIPPED,
+            TestLogEvent.FAILED,
+            TestLogEvent.STANDARD_OUT,
+            TestLogEvent.STANDARD_ERROR
+        )
+        exceptionFormat = TestExceptionFormat.SHORT
+        showExceptions = true
+        showCauses = true
+        showStackTraces = true
     }
 }
