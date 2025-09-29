@@ -1,0 +1,1 @@
+rootProject.name = "qaguru-11-jenkins"
