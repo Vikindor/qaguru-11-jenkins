@@ -2,7 +2,6 @@ package io.github.vikindor.tests;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import io.github.vikindor.config.TestBase;
 import io.github.vikindor.pages.PracticeFormPage;
 import io.github.vikindor.pages.components.ResultModal;
 
