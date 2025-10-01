@@ -19,7 +19,6 @@ public class TestBase {
 
     @BeforeAll
     static void setupConfig() {
-        // General
         Configuration.baseUrl          = System.getProperty("baseUrl", "https://demoqa.com");
         Configuration.browser          = System.getProperty("browser", "chrome");
         Configuration.browserSize      = System.getProperty("browserSize", "1920x1080");
@@ -27,7 +26,7 @@ public class TestBase {
 
         Configuration.remote         = System.getProperty("remoteUrl",
                 "https://user1:1234@selenoid.autotests.cloud/wd/hub");
-        Configuration.browserVersion = System.getProperty("browserVersion", "128.0");
+        Configuration.browserVersion   = System.getProperty("browserVersion", "128.0"); // Remote latest
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.of(
@@ -38,7 +37,7 @@ public class TestBase {
     }
 
     @BeforeEach
-    void listener() {
+    void addListener() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
