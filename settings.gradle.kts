@@ -1,1 +1,1 @@
-rootProject.name = "qaguru-11-jenkins"
+rootProject.name = "qaguru-11-jenkins-1"
